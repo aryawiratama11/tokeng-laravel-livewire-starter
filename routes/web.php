@@ -24,5 +24,10 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/partin', [App\Http\Controllers\HomeController::class, 'partin']);
+Route::get('/partout', [App\Http\Controllers\HomeController::class, 'partout']);
+Route::get('/partcheck', [App\Http\Controllers\HomeController::class, 'partcheck']);
+Route::get('/partrequest', [App\Http\Controllers\HomeController::class, 'partrequest']);
+
+

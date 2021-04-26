@@ -16,8 +16,6 @@
 
     <!-- Script -->
     <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
-    
-
 </head>
 
 <body>
@@ -43,7 +41,6 @@
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -62,7 +59,8 @@
     </main>
     </div>
     <!-- Scripts -->
-    
+
 </body>
 <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
+
 </html>

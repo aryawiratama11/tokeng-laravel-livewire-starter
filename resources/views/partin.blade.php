@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">
+        <div class="card-header">
                 <table style="width:100%">
                 <tr>
                 <td>
@@ -25,39 +25,27 @@
             </div>
             <div class="card-body">
                 <div class="container">
+                <div class="row">
+                <div class="cell-5">
+                <input type="text" data-role="input" data-prepend="Item_Code: ">
+                </div>
+                <div class="cell-1">
+                <button class="button primary" onclick="submit()">Submit</button>
+                </div>
+                </div>
                     <div class="row">
                         <div class="cell-12">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell-12">
-                            <table class="table table-striped table-border cell-border" data-role="table"
-                                data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8"
-                                data-cls-rows-count="cell-md-4">
+                        <div class="row"></div>
+                            <table class="table table-striped table-border cell-border" data-role="table" data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8" data-cls-rows-count="cell-md-4">
                                 <thead>
                                     <tr>
                                         <th class="sortable-column">No</th>
                                         <th class="sortable-column">Item Code</th>
                                         <th class="sortable-column">Item Name</th>
                                         <th class="sortable-column">Qty</th>
-                                        <th class="sortable-column">Minimum Stock</th>
-                                        <th class="sortable-column">UOM</th>
-                                        <th class="sortable-column">Location</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $dt)
-                                    <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{$dt->item_code}}</td>
-                                        <td>{{$dt->item_name}}</td>
-                                        <td>{{$dt->qty}}</td>
-                                        <td>{{$dt->minimum}}</td>
-                                        <td>{{$dt->uom}}</td>
-                                        <td>{{$dt->location}}</td>
-                                    </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -68,4 +56,8 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 @endsection

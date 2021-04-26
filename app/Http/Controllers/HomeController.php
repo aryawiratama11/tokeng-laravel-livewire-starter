@@ -25,7 +25,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = DB::table('stock')->where('qty', '<=', DB::table('stock')->value('minimum'))->get();
+        $minimum = DB::table('stock')->value('minimum');
+        $data = DB::table('stock')->get();
         return view('home', ['data' => $data, 'i' => 1]);
+    }
+
+    public function partin() {
+        return view('partin');
+    }
+
+    public function partout() {
+        return view('partout');
+    }
+
+    public function partcheck() {
+        return view('partcheck');
+    }
+
+    public function partrequest() {
+        return view('partrequest');
     }
 }
