@@ -31,11 +31,11 @@ class HomeController extends Controller
     }
 
     public function partin() {
-        return view('partin');
+        return view('history.partin');
     }
 
     public function partout() {
-        return view('partout');
+        return view('history.partout');
     }
 
     public function partcheck() {

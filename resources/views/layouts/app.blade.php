@@ -13,6 +13,7 @@
     <link href="{{ asset('css/metro-all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/metro-icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    @livewireStyles
 
     <!-- Script -->
     <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
@@ -23,7 +24,7 @@
     <div id="app">
         <header class="bg-darkCyan fg-white d-flex flex-justify-between app-bar">
             <div class="app-bar-container float-none">
-                <a class="app-bar-item bg-darkBlue" href="#"><span class="mif-opencart mif-2x fg-white"> </span> Toko
+                <a class="app-bar-item bg-darkBlue" href="/"><span class="mif-opencart mif-2x fg-white"> </span> Toko
                     Engineering</a>
                 @guest
             </div>
@@ -63,5 +64,5 @@
 
 </body>
 <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
-
+@livewireScripts
 </html>

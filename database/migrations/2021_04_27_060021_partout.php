@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Stock extends Migration
+class Partout extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class Stock extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
-            $table->string('item_code')->primary();
+        Schema::create('partout', function (Blueprint $table) {
+            $table->id();
+            $table->timestamp('date');
+            $table->string('item_code');
             $table->string('item_name');
             $table->integer('qty');
-            $table->integer('minimum');
-            $table->string('uom');
-            $table->string('location');
+            $table->string('remark');
         });
     }
 

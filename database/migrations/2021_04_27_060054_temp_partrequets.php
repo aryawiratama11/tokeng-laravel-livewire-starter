@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Stock extends Migration
+class TempPartrequets extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class Stock extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
-            $table->string('item_code')->primary();
+        Schema::create('temp_partrequest', function (Blueprint $table) {
+            $table->id();
+            $table->string('item_code');
             $table->string('item_name');
             $table->integer('qty');
-            $table->integer('minimum');
             $table->string('uom');
-            $table->string('location');
+            $table->string('rack')->nullable();
+            $table->string('location used')->nullable();
+            $table->string('cost center')->nullable();
+            $table->string('purpose')->nullable();
+            $table->string('remark');
+            $table->string('user');
         });
     }
 

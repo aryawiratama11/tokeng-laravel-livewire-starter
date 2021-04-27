@@ -8,7 +8,7 @@
                 <table style="width:100%">
                 <tr>
                 <td>
-                Input Part In
+                History Part Out
                 </td>
                 <td align="right">
                             <a href="/partin" class="button success shadowed small"><i class="fa fa-sign-in"
@@ -26,8 +26,8 @@
             <div class="card-body">
                 <div class="container">
                 <div class="row">
-                <div class="cell-5">
-                <input type="text" data-role="input" data-prepend="Item_Code: ">
+                <div class="cell-4">
+                <input type="date" data-role="input" name="date" id="date" value="{{date('Y-m-d')}}" data-prepend="Tanggal: ">
                 </div>
                 <div class="cell-1">
                 <button class="button primary" wire:click="submit">Submit</button>
@@ -40,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th class="sortable-column">No</th>
+                                        <th class="sortable-column">Tanggal</th>
                                         <th class="sortable-column">Item Code</th>
                                         <th class="sortable-column">Item Name</th>
                                         <th class="sortable-column">Qty</th>
