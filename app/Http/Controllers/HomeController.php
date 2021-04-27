@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $minimum = DB::table('stock')->value('minimum');
         $data = DB::table('stock')->get();
-        return view('home', ['data' => $data, 'i' => 1]);
+        return view('partcheck', ['data' => $data, 'i' => 1]);
     }
 
     public function partin() {
@@ -39,7 +39,9 @@ class HomeController extends Controller
     }
 
     public function partcheck() {
-        return view('partcheck');
+        $minimum = DB::table('stock')->value('minimum');
+        $data = DB::table('stock')->get();
+        return view('partcheck', ['data' => $data, 'i' => 1]);
     }
 
     public function partrequest() {

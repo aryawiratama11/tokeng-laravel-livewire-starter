@@ -15,7 +15,7 @@
                                     aria-hidden="true"> </i> Part In</a>
                             <a href="/partout" class="button alert shadowed small"><i class="fa fa-sign-out"
                                     aria-hidden="true"> </i> Part Out</a>
-                            <a href="/partquest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
+                            <a href="/partrequest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
                                     aria-hidden="true"> </i> Part Request</a>
                             <a href="/partcheck" class="button info shadowed small"><i class="fa fa-cubes"
                                     aria-hidden="true"> </i> Stock</a>
