@@ -41,10 +41,22 @@ class HomeController extends Controller
     public function partcheck() {
         $minimum = DB::table('stock')->value('minimum');
         $data = DB::table('stock')->get();
-        return view('partcheck', ['data' => $data, 'i' => 1]);
+        return view('history.partcheck', ['data' => $data, 'i' => 1]);
     }
 
     public function partrequest() {
+        return view('history.partrequest');
+    }
+
+    public function newpartin() {
+        return view('partin');
+    }
+
+    public function newpartout() {
+        return view('partout');
+    }
+
+    public function newpartrequest() {
         return view('partrequest');
     }
 }

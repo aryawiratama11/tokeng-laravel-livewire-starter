@@ -27,8 +27,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="cell-4">
-                            <input type="date" data-role="input" name="date" id="date" value="{{date('Y-m-d')}}"
-                                data-prepend="Tanggal: ">
+                        <input type="text" data-role="input" data-prepend="Item_Code: ">
                         </div>
                         <div class="cell-1">
                             <button class="button primary" wire:click="submit">Submit</button>
@@ -37,7 +36,7 @@
                     <div class="row">
                         <div class="cell-12">
                             <div class="row"></div>
-                            <table class="table table-striped table-border cell-border"
+                            <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
                                 data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8"
                                 data-cls-rows-count="cell-md-4">
                                 <thead>
@@ -50,6 +49,11 @@
                                     </tr>
                                 </thead>
                             </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-12" align="right">
+                            <button class="button success" wire:click="prosess">Prosess</button>
                         </div>
                     </div>
                 </div>

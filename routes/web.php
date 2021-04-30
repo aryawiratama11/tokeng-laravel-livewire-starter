@@ -30,4 +30,8 @@ Route::get('/partout', [App\Http\Controllers\HomeController::class, 'partout']);
 Route::get('/partcheck', [App\Http\Controllers\HomeController::class, 'partcheck']);
 Route::get('/partrequest', [App\Http\Controllers\HomeController::class, 'partrequest']);
 
+Route::get('/new/partin', [App\Http\Controllers\HomeController::class, 'newpartin']);
+Route::get('/new/partout', [App\Http\Controllers\HomeController::class, 'newpartout']);
+Route::get('/new/partrequest', [App\Http\Controllers\HomeController::class, 'newpartrequest']);
+
 

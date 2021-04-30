@@ -35,8 +35,8 @@
                 </div>
                     <div class="row">
                         <div class="cell-12">
-                        <div class="row"></div>
-                            <table class="table table-striped table-border cell-border" data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8" data-cls-rows-count="cell-md-4">
+                            <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
+                            data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8" data-cls-rows-count="cell-md-4">
                                 <thead>
                                     <tr>
                                         <th class="sortable-column">No</th>
@@ -47,6 +47,11 @@
                                 </thead>
                                 <livewire:table-partin />
                             </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell-12" align="right">
+                            <button class="button success" wire:click="prosess">Prosess</button>
                         </div>
                     </div>
                 </div>

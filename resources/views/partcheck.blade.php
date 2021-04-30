@@ -27,12 +27,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="cell-12">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell-12">
-                            <table class="table table-striped table-border cell-border" data-role="table"
+                            <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
                                 data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8"
                                 data-cls-rows-count="cell-md-4">
                                 <thead>
