@@ -17,7 +17,7 @@ class Partin extends Migration
             $table->id();
             $table->timestamp('date');
             $table->string('item_code');
-            $table->string('item_name');
+            $table->string('item_name')->nullable();
             $table->integer('qty');
             $table->string('remark');
         });

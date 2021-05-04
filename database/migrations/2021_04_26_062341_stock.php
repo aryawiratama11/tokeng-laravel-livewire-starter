@@ -19,7 +19,7 @@ class Stock extends Migration
             $table->integer('qty');
             $table->integer('minimum');
             $table->string('uom');
-            $table->string('location');
+            $table->string('location')->nullable();
         });
     }
 
