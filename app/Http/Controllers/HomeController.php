@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -31,21 +32,27 @@ class HomeController extends Controller
     }
 
     public function partin() {
-        return view('history.partin');
+        $data = DB::table('partin')->limit(100)->get();
+        return view('history.partin', ['table' => $data, 'i' => 1]);
     }
 
     public function partout() {
-        return view('history.partout');
+        $data = DB::table('partout')->limit(100)->get();
+        return view('history.partout', ['table' => $data, 'i' => 1]);
     }
 
     public function partcheck() {
-        $minimum = DB::table('stock')->value('minimum');
-        $data = DB::table('stock')->get();
-        return view('history.partcheck', ['data' => $data, 'i' => 1]);
+        return view('history.partcheck');
     }
 
     public function partrequest() {
-        return view('history.partrequest');
+        $a1 = Auth::user();
+        if ($a1->role == 'admin') {
+            $data = DB::table('partrequest')->select('noref', 'date', 'approved_1', 'approved_2', 'user')->distinct()->get();
+        } else {
+            $data = DB::table('partrequest')->distinct('noref', 'date', 'approved_1', 'approved_2', 'user')->where('user', $a1->username)->get();
+        }
+        return view('history.partrequest', ['table' => $data, 'i' => 1]);
     }
 
     public function newpartin() {
@@ -59,4 +66,36 @@ class HomeController extends Controller
     public function newpartrequest() {
         return view('partrequest');
     }
+
+    public function newregister() {
+        return view('partregister');
+    }
+
+    public function editpartrequest($id){
+        return view('editpartrequest', ['refer' => $id]);
+    }
+
+    public function detailpartrequest($id){
+        $data = DB::table('partrequest')->where('noref', $id)->get();
+        return view('detailpartrequest', ['refer' => $id, 'record' => $data, 'i' => 1]);
+    }
+
+    public function deletepartrequest($id){
+        $a1 = Auth::user();
+        if ($a1->role == 'admin') {
+            DB::table('partrequest')->where('noref', $id)->delete();
+            return redirect('/partrequest');
+        } else {
+            return redirect('/home');
+        }
+    }
+
+    public function changepassword(){
+        return view('changepassword');
+    }
+
+    public function usercontrol(){
+        return view('usercontrol');
+    }
+
 }

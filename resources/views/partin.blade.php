@@ -8,17 +8,17 @@
                 <table style="width:100%">
                     <tr>
                         <td>
-                            Input Part In
+                            Part In
                         </td>
                         <td align="right">
                             <a href="/partin" class="button success shadowed small"><i class="fa fa-sign-in"
-                                    aria-hidden="true"> </i> Part In</a>
+                                    aria-hidden="true"> </i> <span> </span> Part In</a>
                             <a href="/partout" class="button alert shadowed small"><i class="fa fa-sign-out"
-                                    aria-hidden="true"> </i> Part Out</a>
-                            <a href="/partquest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"> </i> Part Request</a>
+                                    aria-hidden="true"> </i> <span> </span> Part Out</a>
+                            <a href="/partrequest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"> </i> <span> </span> Part Request</a>
                             <a href="/partcheck" class="button info shadowed small"><i class="fa fa-cubes"
-                                    aria-hidden="true"> </i> Stock</a>
+                                    aria-hidden="true"> </i> <span> </span> Stock</a>
                         </td>
                     </tr>
                 </table>
@@ -32,6 +32,14 @@
 </div>
 
 <script>
-
+window.addEventListener('toaster', event => {
+    var options = {
+        showTop: true,
+        timeout: 2000,
+        distance: 80,
+        clsToast: 'primary'
+    };
+    Metro.toast.create(event.detail.message, null, null, null, options);
+});
 </script>
 @endsection

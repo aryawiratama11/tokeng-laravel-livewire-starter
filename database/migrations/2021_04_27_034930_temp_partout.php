@@ -16,7 +16,8 @@ class TempPartout extends Migration
         Schema::create('temp_partout', function (Blueprint $table) {
             $table->string('item_code')->primary();
             $table->string('item_name');
-            $table->integer('qty');
+            $table->decimal('qty', $precision = 5, $scale = 2);
+            $table->string('remark')->nullable();
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TempPartin extends Migration
+class TempPartcheck extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class TempPartin extends Migration
      */
     public function up()
     {
-        Schema::create('temp_partin', function (Blueprint $table) {
+        Schema::create('temp_register', function (Blueprint $table) {
             $table->string('item_code')->primary();
             $table->string('item_name')->nullable();
-            $table->decimal('qty', $precision = 5, $scale = 2);
-            $table->string('remark')->nullable();
+            $table->decimal('qty', $precision = 5, $scale = 2)->nullable();
+            $table->integer('minimum')->nullable();
+            $table->string('uom')->nullable();
+            $table->string('location')->nullable();
+            $table->boolean('status')->default(1);
         });
     }
 

@@ -12,13 +12,13 @@
                         </td>
                         <td align="right">
                             <a href="/partin" class="button success shadowed small"><i class="fa fa-sign-in"
-                                    aria-hidden="true"> </i> Part In</a>
+                                    aria-hidden="true"> </i> <span> </span> Part In</a>
                             <a href="/partout" class="button alert shadowed small"><i class="fa fa-sign-out"
-                                    aria-hidden="true"> </i> Part Out</a>
+                                    aria-hidden="true"> </i> <span> </span> Part Out</a>
                             <a href="/partrequest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"> </i> Part Request</a>
+                                    aria-hidden="true"> </i> <span> </span> Part Request</a>
                             <a href="/partcheck" class="button info shadowed small"><i class="fa fa-cubes"
-                                    aria-hidden="true"> </i> Stock</a>
+                                    aria-hidden="true"> </i> <span> </span> Stock</a>
                         </td>
                     </tr>
                 </table>
@@ -26,10 +26,7 @@
             <div class="card-body">
                 <div class="container">
                     <div class="row">
-                        <div class="cell-4">
-                            <input type="date" data-role="input" name="date" id="date" value="{{date('Y-m-d')}}"
-                                data-prepend="Tanggal: ">
-                        </div>
+                    <div class="cell-4 my-search-wrapper"></div>
                         <div class="cell-8" align="right">
                             <a href="/new/partout" class="button alert"><i class="fa fa-sign-out" aria-hidden="true"> </i>
                                 New Request</a>
@@ -39,7 +36,7 @@
                         <div class="cell-12">
                             <div class="row"></div>
                             <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
-                                data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8" data-show-search="false"
+                                data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-4" data-show-search="true"  data-search-wrapper=".my-search-wrapper"
                                 data-cls-rows-count="cell-md-4">
                                 <thead>
                                     <tr>
@@ -50,7 +47,17 @@
                                         <th class="sortable-column">Qty</th>
                                     </tr>
                                 </thead>
-                                <livewire:table-partin />
+                                <tbody>
+                                    @foreach ($table as $tbl)
+                                    <tr>
+                                        <td> {{$i++}} </td>
+                                        <td> {{date('d/m/Y', strtotime($tbl->date))}} </td>
+                                        <td> {{$tbl->item_code}} </td>
+                                        <td> {{$tbl->item_name}} </td>
+                                        <td> {{$tbl->qty}} </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

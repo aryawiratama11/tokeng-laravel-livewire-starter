@@ -15,20 +15,22 @@ class Partrequest extends Migration
     {
         Schema::create('partrequest', function (Blueprint $table) {
             $table->id();
-            $table->string('noreq');
+            $table->string('noref');
             $table->timestamp('date');
-            $table->string('item_code');
-            $table->string('item_name');
+            $table->string('item_code')->nullable();
+            $table->string('item_name')->nullable();
             $table->integer('qty');
-            $table->string('uom');
+            $table->string('uom')->nullable();
             $table->string('rack')->nullable();
-            $table->string('location used')->nullable();
-            $table->string('cost center')->nullable();
-            $table->string('purpose')->nullable();
-            $table->string('remark')->nullable();
+            $table->string('location_used')->nullable();
+            $table->string('cost_center')->nullable();
+            $table->boolean('purpose_1')->default(0);
+            $table->boolean('purpose_2')->default(0);
+            $table->boolean('purpose_3')->default(0);
+            $table->boolean('remark')->default(0);
             $table->string('user');
-            $table->string('approved_1')->nullable();
-            $table->string('approved_2')->nullable();
+            $table->boolean('approved_1')->default(0);
+            $table->boolean('approved_2')->default(0);
         });
     }
 

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,7 +7,7 @@
                 <table style="width:100%">
                     <tr>
                         <td>
-                            Part Request
+                            Register Barang
                         </td>
                         <td align="right">
                             <a href="/partin" class="button success shadowed small"><i class="fa fa-sign-in"
@@ -24,23 +23,13 @@
                 </table>
             </div>
             <div class="card-body">
-            <livewire:table-partrequest/>
-                <br>
+            <livewire:table-partcheck />
             </div>
         </div>
     </div>
 </div>
 <script>
 window.addEventListener('toaster', event => {
-    var options = {
-        showTop: true,
-        timeout: 2000,
-        distance: 80,
-        clsToast: event.detail.type
-    };
-    Metro.toast.create(event.detail.message, null, null, null, options);
-});
-window.addEventListener('popover', event => {
     var options = {
         showTop: true,
         timeout: 2000,

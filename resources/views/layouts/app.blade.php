@@ -33,8 +33,8 @@
         <div class="app-bar-contaniner float-left">
             <a href="#" class="dropdown-toggle">{{ Auth::user()->name }}</a>
             <ul class="d-menu place-right" data-role="dropdown">
-                <li><a href="/profile">Rubah Password</a></li>
-                <li><a href="/profile">Pengaturan Pengguna</a></li>
+                <li><a href="/changepassword">Rubah Password</a></li>
+                <li><a href="/usercontrol">Pengaturan Pengguna</a></li>
                 <li class="divider bg-lightGray"></li>
                 <li>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

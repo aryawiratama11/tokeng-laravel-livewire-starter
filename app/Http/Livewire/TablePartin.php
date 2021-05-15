@@ -9,24 +9,32 @@ class TablePartin extends Component
 {
 
     public $input_code;
-    public $count = 0;
-
+    public $items = [];
+    public $i = 1;
 
     public function submit() {
-        $id = $this->input_code;
+        $id = strtoupper($this->input_code);
         $item_name = DB::table('stock')->where('item_code', $id)->select('item_name')->value('item_name');
-        $qty = DB::table('temp_partin')->where('item_code', $id)->select('qty')->value('qty');
+        $qty = DB::table('temp_partin')->where('item_code', $id)->select('qty')->value('qty') + 1;
 
         DB::table('temp_partin')->updateOrInsert([
-           'item_code' => $id, 'item_name' => $item_name
-        ],['qty' => $qty + 1]);
+            'item_code' => $id, 'item_name' => $item_name
+         ],['qty' => $qty, 'remark' => '-']);
+        if (DB::table('temp_partin')->where('item_code', $id)->where('item_name', $item_name)->doesntExist()) {
+             $this->dispatchBrowserEvent('toaster', ['message' => 'Item Berhasil Ditambah']);
+        } else {
+             $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah']);
+        }
     }
 
-    public function update(Request $request) {
+    public function update($id, $index) {
+        $qty = $this->items[$index]['qty'];
+        $remark = $this->items[$index]['remark'];
         if (DB::table('stock')->where('item_code', $id)->doesntExist()) {
+            $name = $this->items[$index]['item_name'];
             DB::table('stock')->insert([
                 'item_code' => $id,
-                'item_name' => $request->item_name,
+                'item_name' => $name,
                 'qty' => 0,
                 'minimum' => 0,
                 'uom' => 'Pcs',
@@ -37,9 +45,10 @@ class TablePartin extends Component
         $item_name = DB::table('stock')->where('item_code', $id)->select('item_name')->value('item_name');
         DB::table('temp_partin')->where('item_code', $id)->update([
             'item_name' => $item_name,
-            'qty' => $request->qty,
-            'remark' => $request->remark
+            'qty' => $qty,
+            'remark' => $remark
         ]);
+        $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah']);
     }
     
     public function delete($id) {
@@ -50,18 +59,24 @@ class TablePartin extends Component
         $move = DB::table('temp_partin')->get();
         foreach ($move as $mv) {
             DB::table('partin')->insert([
-                'item_code' => $mv->item_code,
-                'item_name' => $mv->item_name,
-                'qty' => $mv->qty,
-                'remark' => $mv->remark
+                "date" => date('Y-m-d'),
+                "item_code" => $mv->item_code,
+                "item_name" => $mv->item_name,
+                "qty" => $mv->qty,
+                "remark" => $mv->remark
+            ]);
+            $qty = DB::table('stock')->where('item_code', $mv->item_code)->select('qty')->value('qty');
+            DB::table('stock')->where('item_code', $mv->item_code)->update([
+                'qty' => $qty + $mv->qty
             ]);
         } 
-        
+        DB::table('temp_partin')->truncate();
+        return redirect('/partin');
     }
 
     public function render()
     {
-        $table = DB::table('temp_partin')->get();
-        return view('livewire.table-partin', ['table' => $table, 'i' => 1]);
+        $this->items = DB::table('temp_partin')->get();
+        return view('livewire.table-partin');
     }
 }

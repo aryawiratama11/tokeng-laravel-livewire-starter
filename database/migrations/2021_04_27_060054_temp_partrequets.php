@@ -15,16 +15,19 @@ class TempPartrequets extends Migration
     {
         Schema::create('temp_partrequest', function (Blueprint $table) {
             $table->id();
-            $table->string('item_code');
-            $table->string('item_name');
-            $table->integer('qty');
+            $table->string('item_code')->nullable();
+            $table->string('item_name')->nullable();
+            $table->string('qty')->nullable();
             $table->string('uom');
             $table->string('rack')->nullable();
-            $table->string('location used')->nullable();
-            $table->string('cost center')->nullable();
-            $table->string('purpose')->nullable();
-            $table->string('remark');
+            $table->string('location_used')->nullable();
+            $table->string('cost_center')->nullable();
+            $table->boolean('purpose_1')->default(0);
+            $table->boolean('purpose_2')->default(0);
+            $table->boolean('purpose_3')->default(0);
+            $table->boolean('remark')->default(0);
             $table->string('user');
+            $table->boolean('status')->default(1);
         });
     }
 

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="cell-5">
-            <input type="text" data-role="input" wire:keydown.enter="submit" wire:model="input_code" name="input_code"
+            <input type="text" data-role="input" wire:keydown.enter="submit" wire:model.defer="input_code" name="input_code"
                 id="input_code" data-prepend="Item_Code: ">
         </div>
         <div class="cell-1">
@@ -10,31 +10,32 @@
     </div>
     <div class="row">
         <div class="cell-12">
-            <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
+            <table class="table table-striped table-border cell-border">
+                <!-- <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
                 data-cls-table-top="row flex-nowrap" data-show-search="false" data-cls-rows-count="cell-md-4"
-                data-pagination-short-mode="false">
+                data-pagination-short-mode="false"> -->
                 <thead>
                     <tr>
-                        <th class="sortable-column">No</th>
-                        <th class="sortable-column">Item Code</th>
-                        <th class="sortable-column">Item Name</th>
-                        <th class="sortable-column">Qty</th>
-                        <th class="sortable-column">Remark</th>
-                        <th class="sortable-column">Option</th>
+                        <th>No</th>
+                        <th>Item Code</th>
+                        <th>Item Name</th>
+                        <th style="width:100px">Qty</th>
+                        <th>Remark</th>
+                        <th style="width:100px">Option</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($table as $tbl)
+                    @foreach ($items as $index => $item )
                     <tr>
                         <td> {{$i++}} </td>
-                        <td> {{$tbl->item_code}} </td>
-                        <td> @if ($tbl->item_name == '') <input type="text" data-role="input" > @else {{$tbl->item_name}} @endif </td>
-                        <td> <input type="text" data-role="input" value="{{$tbl->qty}}"></td>
-                        <td> <input type="text" data-role="input" value="{{$tbl->remark}}"></td>
+                        <td> {{$item->item_code}} </td>
+                        <td> @if ($item->item_name == '') <input type="text" wire:model.defer="items.{{$index}}.item_name" name="item_name"data-role="input" > @else {{$item->item_name}} @endif </td>
+                        <td> <input type="text" data-role="input" wire:model.defer="items.{{$index}}.qty" name="qty"></td>
+                        <td> <input type="text" data-role="input" wire:model.defer="items.{{$index}}.remark" name="remark"></td>
                         <td>
-                            <button class="button primary small" wire:click="update('{{$tbl->item_code}}')"><i class="fa fa-pencil"
+                            <button class="button primary small" wire:click="update('{{$item->item_code}}', {{$index}})"><i class="fa fa-pencil"
                                     aria-hidden="true"></i></button>
-                            <button class="button alert small" wire:click="delete('{{$tbl->item_code}}')"><i class="fa fa-eraser"
+                            <button class="button alert small" wire:click="delete('{{$item->item_code}}')"><i class="fa fa-eraser"
                                     aria-hidden="true"></i></button>
                         </td>
                     </tr>

@@ -18,8 +18,8 @@ class Partout extends Migration
             $table->timestamp('date');
             $table->string('item_code');
             $table->string('item_name');
-            $table->integer('qty');
-            $table->string('remark');
+            $table->decimal('qty', $precision = 5, $scale = 2);
+            $table->string('remark')->nullable();
         });
     }
 

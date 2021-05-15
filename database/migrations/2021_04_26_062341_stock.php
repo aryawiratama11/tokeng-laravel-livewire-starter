@@ -20,6 +20,7 @@ class Stock extends Migration
             $table->integer('minimum');
             $table->string('uom');
             $table->string('location')->nullable();
+            $table->boolean('status')->default('0');
         });
     }
 
