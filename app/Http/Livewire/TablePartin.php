@@ -25,6 +25,8 @@ class TablePartin extends Component
         } else {
              $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah']);
         }
+        $this->input_code = "";
+        $this->emit('focused');
     }
 
     public function update($id, $index) {

@@ -30,8 +30,16 @@
         </div>
     </div>
 </div>
-
 <script>
+    window.livewire.on('focused', function() => {
+            $('#input_code').focus();
+    })
+</script>
+<script>
+$( document ).ready(function() {
+    $('#input_code').focus();
+});
+
 window.addEventListener('toaster', event => {
     var options = {
         showTop: true,
@@ -40,6 +48,7 @@ window.addEventListener('toaster', event => {
         clsToast: 'primary'
     };
     Metro.toast.create(event.detail.message, null, null, null, options);
+    $('#input_code').focus();
 });
 </script>
 @endsection

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="cell-5">
-            <input type="text" data-role="input" wire:keydown.enter="submit" wire:model.defer="input_code" name="input_code"
+            <input type="text" autofocus data-role="input" wire:keydown.enter="submit" wire:model.defer="input_code" name="input_code"
                 id="input_code" data-prepend="Item_Code: ">
         </div>
         <div class="cell-1">
