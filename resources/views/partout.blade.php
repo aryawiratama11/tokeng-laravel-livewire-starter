@@ -36,9 +36,10 @@ window.addEventListener('toaster', event => {
         showTop: true,
         timeout: 2000,
         distance: 80,
-        clsToast: 'alert'
+        clsToast: event.detail.type,
     };
     Metro.toast.create(event.detail.message, null, null, null, options);
+    $('#input_code').focus();
 });
 </script>
 @endsection

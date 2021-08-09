@@ -2,7 +2,7 @@
     <div class="row">
         <div class="cell-5">
             <input type="text" autofocus data-role="input" wire:keydown.enter="submit" wire:model.defer="input_code" name="input_code"
-                id="input_code" data-prepend="Item_Code: ">
+                id="input_code" data-prepend="Item_Code: " autofocus>
         </div>
         <div class="cell-1">
             <button class="button primary" wire:click="submit">Submit</button>

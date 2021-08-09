@@ -2,7 +2,7 @@
     <div class="row">
         <div class="cell-5">
             <input type="text" data-role="input" wire:keydown.enter="submit" wire:model.defer="input_code" name="input_code"
-                id="input_code" data-prepend="Item_Code: ">
+                id="input_code" data-prepend="Item_Code: " autofocus>
         </div>
         <div class="cell-1">
             <button class="button primary" wire:click="submit">Submit</button>
@@ -11,9 +11,6 @@
     <div class="row">
         <div class="cell-12">
             <table class="table table-striped table-border cell-border">
-                <!-- <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
-                data-cls-table-top="row flex-nowrap" data-show-search="false" data-cls-rows-count="cell-md-4"
-                data-pagination-short-mode="false"> -->
                 <thead>
                     <tr>
                         <th>No</th>

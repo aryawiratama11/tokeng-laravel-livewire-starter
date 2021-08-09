@@ -21,9 +21,9 @@ class TablePartin extends Component
             'item_code' => $id, 'item_name' => $item_name
          ],['qty' => $qty, 'remark' => '-']);
         if (DB::table('temp_partin')->where('item_code', $id)->where('item_name', $item_name)->doesntExist()) {
-             $this->dispatchBrowserEvent('toaster', ['message' => 'Item Berhasil Ditambah']);
+             $this->dispatchBrowserEvent('toaster', ['message' => 'Item Berhasil Ditambah', 'type' => 'success']);
         } else {
-             $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah']);
+             $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah', 'type' => 'success']);
         }
         $this->input_code = "";
         $this->emit('focused');
@@ -50,11 +50,12 @@ class TablePartin extends Component
             'qty' => $qty,
             'remark' => $remark
         ]);
-        $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah']);
+        $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah', 'type' => 'success']);
     }
     
     public function delete($id) {
         DB::table('temp_partin')->where('item_code', $id)->delete();
+        $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Berhasil Dihapus', 'type' => 'alert']);
     }
 
     public function prosess() {

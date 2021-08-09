@@ -28,15 +28,98 @@
         </div>
     </div>
 </div>
+
+<div class="dialog" data-role="dialog" id="demoDialog1">
+    <div class="dialog-title" id="dialog-title"></div>
+    <div class="dialog-content">
+    @csrf
+        <input hidden id="itemcode" type="text">
+        <div class="row">
+        <div class="cell-4">Item Name</div>
+        <div class="cell-8"><input id="item_name" type="text" data-role="input"></div>
+        </div>
+        <div class="row">
+        <div class="cell-4">Item Qty</div>
+        <div class="cell-5"><input id="item_qty" type="text" data-role="input"> </div>
+        <div class="cell-3"><input id="item_uom" type="text" data-role="input" data-clear-button="false"> </div>
+        </div>
+        <div class="row">
+        <div class="cell-4">Minimum Stock</div>
+        <div class="cell-8"><input id="minimum_stock" type="text" data-role="input"></div>
+        </div>
+        <div class="row">
+        <div class="cell-4">Location</div>
+        <div class="cell-8"><input id="location" type="text" data-role="input"></div>
+        </div>
+    </div>
+    <div class="dialog-actions">
+        <button class="button" onclick="update()">Process</button>
+        <button class="button primary" onclick="Metro.dialog.close('#demoDialog1')">Cancel</button>
+    </div>
+</div>
+
 <script>
-window.addEventListener('toaster', event => {
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+function deleted(id) {
+axios.get('/stock/delete/' + id)
+  .then(function (response) {
     var options = {
         showTop: true,
         timeout: 2000,
         distance: 80,
-        clsToast: event.detail.type
+        clsToast: 'alert'
     };
-    Metro.toast.create(event.detail.message, null, null, null, options);
-});
+    Metro.toast.create('Item Berhasil Dihapus', null, null, null, options);
+  });
+}
+function showmodal(id) {
+axios.get('/stock/data/' + id)
+  .then(function (response) {
+    document.getElementById("dialog-title").innerHTML = 'Rubah Item ' + id;
+    document.getElementById("itemcode").value = id;
+    document.getElementById("item_name").value = response.data[0].item_name;
+    document.getElementById("item_qty").value = response.data[0].qty;
+    document.getElementById("item_uom").value = response.data[0].uom;
+    document.getElementById("minimum_stock").value = response.data[0].minimum;
+    document.getElementById("location").value = response.data[0].location;
+  });
+  Metro.dialog.open('#demoDialog1')
+}
+function update(id) {
+axios.post('/stock/update', {
+    _token    : document.getElementsByName("_token")[0].value,
+    item_code : document.getElementById("itemcode").value,
+    name      : document.getElementById("item_name").value,
+    qty       : document.getElementById("item_qty").value, 
+    uom       : document.getElementById("item_uom").value,
+    minim     : document.getElementById("minimum_stock").value,
+    location  : document.getElementById("location").value,
+}).then(function (response) {
+    Metro.dialog.close('#demoDialog1')
+    var options = {
+        showTop: true,
+        timeout: 2000,
+        distance: 80,
+        clsToast: 'success'
+    };
+    Metro.toast.create('Item Berhasil Dirubah', null, null, null, options);
+    location.reload();
+  })
+  .catch(function (error, response) {
+    var options = {
+        showTop: true,
+        timeout: 2000,
+        distance: 80,
+        clsToast: 'alert'
+    };
+    Metro.toast.create(error, null, null, null, options);
+  });
+}
 </script>
 @endsection

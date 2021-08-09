@@ -95,7 +95,27 @@ class HomeController extends Controller
     }
 
     public function usercontrol(){
-        return view('usercontrol');
+        $data = DB::table('users')->where('role', '<>', 'admin')->get();
+        return view('usercontrol', ['users' => $data, 'i' => 1]);
     }
 
+    public function deletestock($id){
+        DB::table('stock')->where('item_code', $id)->delete();
+        return 'Ok';
+    }
+
+    public function datastock($id){
+        $data = DB::table('stock')->where('item_code', $id)->get();
+        return $data;
+    }
+
+    public function updatestock(Request $request){
+        DB::table('stock')->where('item_code', $request->item_code)->update([
+            'item_name' => $request->name,
+            'qty' => $request->qty,
+            'uom' => $request->uom,
+            'minimum' => $request->minim,
+            'location' => $request->location
+        ]);
+    }
 }

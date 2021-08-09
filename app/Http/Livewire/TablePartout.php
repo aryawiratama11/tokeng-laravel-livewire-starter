@@ -17,18 +17,21 @@ class TablePartout extends Component
         $item_name = DB::table('stock')->where('item_code', $id)->select('item_name')->value('item_name');
         $qty = DB::table('temp_partout')->where('item_code', $id)->select('qty')->value('qty') + 1;
         if (DB::table('stock')->where('item_code', $id)->doesntExist()) {
-            $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Tidak Tersedia']);
+            $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Tidak Tersedia', 'type' => 'warning']);
         }else {
             $count   = DB::table('stock')->where('item_code', $id)->select('qty')->value('qty');
             if ($count < $qty) {
-                $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Kurang Dari yang Tersedia']);
+                $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Kurang Dari yang Tersedia', 'type' => 'warning']);
             }
             else {
                 DB::table('temp_partout')->updateOrInsert([
                     'item_code' => $id, 'item_name' => $item_name
                  ],['qty' => $qty, 'remark' => '-']);
+                 $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Berhasil Di Tambah', 'type' => 'success']);
             }
         }
+        $this->input_code = "";
+        $this->emit('focused');
     }
 
     public function update($id, $index) {
@@ -36,20 +39,21 @@ class TablePartout extends Component
         $remark = $this->items[$index]['remark'];
         $count   = DB::table('stock')->where('item_code', $id)->select('qty')->value('qty');
         if ($count < $qty) {
-            $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Kurang Dari yang Tersedia']);
+            $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Kurang Dari yang Tersedia', 'type' => 'warning']);
         } else{
-            // Do Nothing
+            $item_name = DB::table('stock')->where('item_code', $id)->select('item_name')->value('item_name');
+            DB::table('temp_partout')->where('item_code', $id)->update([
+                'item_name' => $item_name,
+                'qty' => $qty,
+                'remark' => $remark
+            ]);
+            $this->dispatchBrowserEvent('toaster', ['message' => 'Kuantitas Berhasil Dirubah', 'type' => 'success']);
         }
-        $item_name = DB::table('stock')->where('item_code', $id)->select('item_name')->value('item_name');
-        DB::table('temp_partout')->where('item_code', $id)->update([
-            'item_name' => $item_name,
-            'qty' => $qty,
-            'remark' => $remark
-        ]);
     }
     
     public function delete($id) {
         DB::table('temp_partout')->where('item_code', $id)->delete();
+        $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Berhasil Dihapus', 'type' => 'alert']);
     }
 
     public function prosess() {
