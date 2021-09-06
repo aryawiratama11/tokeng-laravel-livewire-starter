@@ -31,6 +31,8 @@
                             <a href="/new/partin" class="button success"><i class="fa fa-sign-out" aria-hidden="true">
                                 </i>
                                 New Request</a>
+                            <a href="/excel/partin" class="button primary"><i class="fa fa-file-excel-o"
+                                    aria-hidden="true"> </i> <span> </span> Download Data</a></a>
                         </div>
                     </div>
                     <div class="row">

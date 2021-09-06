@@ -5,6 +5,8 @@
         <div class="cell-8" align="right">
             <a href="/new/register" class="button info"><i class="fa fa-cubes" aria-hidden="true"> </i>
                 New Register</a>
+            <a href="/excel/stock" class="button primary"><i class="fa fa-file-excel-o"
+                                    aria-hidden="true"> </i> <span> </span> Download Data</a>
         </div>
     </div>
     <div class="row">

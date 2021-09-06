@@ -47,3 +47,6 @@ Route::get('/detail/partrequest/{id}', [App\Http\Controllers\HomeController::cla
 Route::get('/stock/delete/{id}', [App\Http\Controllers\HomeController::class, 'deletestock']);
 Route::get('/stock/data/{id}', [App\Http\Controllers\HomeController::class, 'datastock']);
 Route::post('/stock/update', [App\Http\Controllers\HomeController::class, 'updatestock']);
+
+
+Route::get('/excel/{id}', [App\Http\Controllers\HomeController::class, 'excel']);

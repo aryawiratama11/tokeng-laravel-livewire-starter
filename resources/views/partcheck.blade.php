@@ -25,10 +25,16 @@
             </div>
             <div class="card-body">
                 <div class="container">
+                    <div class="row mb-2">
+                        <div class="cell-md-4 my-search-wrapper"></div>
+                        <div class="cell-md-6" ></div>
+                        <div class="cell-md-2 my-rows-wrapper" align="right"> <a href="/excel/minimumstock" class="button primary"><i class="fa fa-file-excel-o"
+                                    aria-hidden="true"> </i> <span> </span> Download Data</a></div>
+                    </div>
                     <div class="row">
                         <div class="cell-12">
                             <table class="table table-striped table-border cell-border" data-role="table" data-show-rows-steps="false"
-                                data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-4"
+                                data-cls-table-top="row flex-nowrap" data-search-wrapper=".my-search-wrapper"
                                 data-cls-rows-count="cell-md-4">
                                 <thead>
                                     <tr>
@@ -43,8 +49,9 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $dt)
+                                    @if ($dt->qty <= $dt->minimum)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$i++}}</td>
                                         <td>{{$dt->item_code}}</td>
                                         <td>{{$dt->item_name}}</td>
                                         <td>{{$dt->qty}}</td>
@@ -52,6 +59,7 @@
                                         <td>{{$dt->uom}}</td>
                                         <td>{{$dt->location}}</td>
                                     </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>

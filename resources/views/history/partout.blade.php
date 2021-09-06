@@ -30,6 +30,8 @@
                         <div class="cell-8" align="right">
                             <a href="/new/partout" class="button alert"><i class="fa fa-sign-out" aria-hidden="true"> </i>
                                 New Request</a>
+                            <a href="/excel/partout" class="button primary"><i class="fa fa-file-excel-o"
+                                    aria-hidden="true"> </i> <span> </span> Download Data</a>
                         </div>
                     </div>
                     <div class="row">

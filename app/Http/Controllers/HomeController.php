@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Exports\actualStock;
+use App\Exports\minimumStock;
+use App\Exports\partStock;
+use App\Exports\partOut;
+use App\Exports\partIn;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 
 class HomeController extends Controller
@@ -26,18 +33,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $minimum = DB::table('stock')->value('minimum');
-        $data = DB::table('stock')->get();
+        $data = DB::table('stock')->orderBy('qty', 'asc')->get();
         return view('partcheck', ['data' => $data, 'i' => 1]);
     }
 
     public function partin() {
-        $data = DB::table('partin')->limit(100)->get();
+        $data = DB::table('partin')->limit(100)->orderBy('date', 'desc')->get();
         return view('history.partin', ['table' => $data, 'i' => 1]);
     }
 
     public function partout() {
-        $data = DB::table('partout')->limit(100)->get();
+        $data = DB::table('partout')->limit(100)->orderBy('date', 'desc')->get();
         return view('history.partout', ['table' => $data, 'i' => 1]);
     }
 
@@ -117,5 +123,22 @@ class HomeController extends Controller
             'minimum' => $request->minim,
             'location' => $request->location
         ]);
+    }
+
+    public function excel($id) {
+        if ($id == 'stock') {
+            return Excel::download(new actualStock, 'actualStock.xlsx');
+        }
+        else if ($id == 'partin') {
+            return Excel::download(new partIn, 'partIn.xlsx');
+        }
+        else if ($id == 'partout') {
+            return Excel::download(new partOut, 'partOut.xlsx');
+        }
+        else if ($id == 'minimumstock') {
+            return Excel::download(new minimumStock, 'minimumStock.xlsx');
+        }else {
+
+        }
     }
 }
