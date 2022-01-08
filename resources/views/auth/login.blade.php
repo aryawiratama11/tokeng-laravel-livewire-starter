@@ -13,7 +13,7 @@
                         @csrf
                         <div class="row">
                             <div class="cell-4 p-3">
-                                <div>Username</div>
+                                <div class="text-center">Username</div>
                             </div>
                             <div class="cell-7"><input type="text" name="username" id="username"
                                     value="{{ old('username') }}" data-role="input"></div>
@@ -30,7 +30,7 @@
                         <br>
                         <div class="row">
                             <div class="cell-4 p-3">
-                                <div>Password</div>
+                                <div class="text-center">Password</div>
                             </div>
                             <div class="cell-7"><input type="password" name="password" id="password"
                                     value="{{ old('password') }}" data-role="input"></div>
