@@ -26,7 +26,7 @@ class TablePartout extends Component
             else {
                 DB::table('temp_partout')->updateOrInsert([
                     'item_code' => $id, 'item_name' => $item_name
-                 ],['qty' => $qty, 'remark' => '-']);
+                 ],['qty' => $qty]);
                  $this->dispatchBrowserEvent('toaster', ['message' => 'Barang Berhasil Di Tambah', 'type' => 'success']);
             }
         }

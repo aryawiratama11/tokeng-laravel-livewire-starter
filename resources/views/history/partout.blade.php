@@ -47,6 +47,7 @@
                                         <th class="sortable-column">Item Code</th>
                                         <th class="sortable-column">Item Name</th>
                                         <th class="sortable-column">Qty</th>
+                                        <th class="sortable-column">Remark</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +58,7 @@
                                         <td> {{$tbl->item_code}} </td>
                                         <td> {{$tbl->item_name}} </td>
                                         <td> {{$tbl->qty}} </td>
+                                        <td> {{$tbl->remark}} </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
