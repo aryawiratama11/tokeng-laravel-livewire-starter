@@ -10,7 +10,7 @@ class partOut implements FromView
 {
     public function view(): View
     {
-        $data = DB::table('partout')->limit(100)->orderBy('date', 'desc')->get();
+        $data = DB::table('partout')->orderBy('date', 'desc')->get();
         return view('excel.partout', ['table' => $data, 'i' => 1]);
     }
     

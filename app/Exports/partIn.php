@@ -10,7 +10,7 @@ class partIn implements FromView
 {
     public function view(): View
     {
-        $data = DB::table('partin')->limit(100)->orderBy('date', 'desc')->get();
+        $data = DB::table('partin')->orderBy('date', 'desc')->get();
         return view('excel.partin', ['table' => $data, 'i' => 1]);
     }
     

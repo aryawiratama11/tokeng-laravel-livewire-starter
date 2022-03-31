@@ -38,12 +38,12 @@ class HomeController extends Controller
     }
 
     public function partin() {
-        $data = DB::table('partin')->limit(100)->orderBy('date', 'desc')->get();
+        $data = DB::table('partin')->orderBy('date', 'desc')->get();
         return view('history.partin', ['table' => $data, 'i' => 1]);
     }
 
     public function partout() {
-        $data = DB::table('partout')->limit(100)->orderBy('date', 'desc')->get();
+        $data = DB::table('partout')->orderBy('date', 'desc')->get();
         return view('history.partout', ['table' => $data, 'i' => 1]);
     }
 
