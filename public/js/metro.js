@@ -14910,7 +14910,7 @@ $.noConflict = function() {
 
         _build: function(){
             var that = this, element = this.element, o = this.options;
-            var body = $("body");
+            var body = $(".container2");
             var overlay;
 
             element.addClass("dialog");
@@ -15011,7 +15011,6 @@ $.noConflict = function() {
                     background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
-
             return overlay;
         },
 
@@ -15222,7 +15221,7 @@ $.noConflict = function() {
         create: function(options){
             var dlg;
 
-            dlg = $("<div>").appendTo($("body"));
+            dlg = $("<div>").appendTo($(".container2"));
 
             var dlg_options = $.extend({}, {
                 show: true,
