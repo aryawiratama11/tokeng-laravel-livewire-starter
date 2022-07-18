@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class HistoryPartcheck extends Component
 {
-    public $users = [];
+    public $data = [];
     public $i = 1;
     public $search;
 
@@ -50,7 +50,7 @@ class HistoryPartcheck extends Component
     public function render()
     {
         $searchterm = $this->search."%";
-        $this->users = DB::table('stock')->where('item_code', 'like', $searchterm)->orWhere('item_name', 'like', $searchterm)->get();
+        $this->data = DB::table('stock')->where('item_code', 'like', $searchterm)->orWhere('item_name', 'like', $searchterm)->get();
         return view('livewire.history-partcheck');
     }
 }
