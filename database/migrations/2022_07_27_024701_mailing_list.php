@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Approver extends Migration
+class MailingList extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Approver extends Migration
      */
     public function up()
     {
-        Schema::create('approver', function (Blueprint $table) {
+        Schema::create('mail_list', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('approval01')->nullable();
-            $table->string('approval02')->nullable();
+            $table->string('email');
+            $table->string('type');
         });
     }
 
@@ -28,6 +27,6 @@ class Approver extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approver');
+        Schema::dropIfExists('mail_list');
     }
 }

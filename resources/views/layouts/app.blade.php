@@ -33,8 +33,9 @@
         <div class="app-bar-contaniner float-left">
             <a href="#" class="dropdown-toggle">{{ Auth::user()->name }}</a>
             <ul class="d-menu place-right" data-role="dropdown">
-                <li><a href="/changepassword">Rubah Password</a></li>
-                <li><a href="/usercontrol">Pengaturan Pengguna</a></li>
+                <li><a href="{{ route('change_password') }}">Rubah Password</a></li>
+                <li><a href="{{ route('user_control') }}">Pengaturan Pengguna</a></li>
+                <li><a href="{{ route('notify_config') }}">Konfigurasi Notifikasi</a></li>
                 <li class="divider bg-lightGray"></li>
                 <li>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

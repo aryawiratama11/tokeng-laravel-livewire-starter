@@ -86,6 +86,10 @@ class HomeController extends Controller
         return view('detailpartrequest', ['refer' => $id, 'record' => $data, 'i' => 1]);
     }
 
+    public function notifyconfig(){
+        return view('user-notify');
+    }
+
     public function deletepartrequest($id){
         $a1 = Auth::user();
         if ($a1->role == 'admin') {
@@ -140,5 +144,10 @@ class HomeController extends Controller
         }else {
 
         }
+    }
+    
+    public function autocomplete_user(){
+        $data = DB::table('users')->where('role', '<>', 'admin')->select('email')->distinct()->pluck('email');
+        return $data;
     }
 }

@@ -11,14 +11,14 @@
                             Part Out
                         </td>
                         <td align="right">
-                            <a href="/partin" class="button success shadowed small"><i class="fa fa-sign-in"
-                                    aria-hidden="true"> </i> <span> </span> Part In</a>
-                            <a href="/partout" class="button alert shadowed small"><i class="fa fa-sign-out"
-                                    aria-hidden="true"> </i> <span> </span> Part Out</a>
-                            <a href="/partrequest" class="button dark shadowed small"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"> </i> <span> </span> Part Request</a>
-                            <a href="/partcheck" class="button info shadowed small"><i class="fa fa-cubes"
-                                    aria-hidden="true"> </i> <span> </span> Stock</a>
+                            <a href="{{ route('part_in') }}" class="button success shadowed small"><i
+                                    class="fa fa-sign-in" aria-hidden="true"> </i> <span> </span> Part In</a>
+                            <a href="{{ route('part_out') }}" class="button alert shadowed small"><i
+                                    class="fa fa-sign-out" aria-hidden="true"> </i> <span> </span> Part Out</a>
+                            <a href="{{ route('part_request') }}" class="button dark shadowed small"><i
+                                    class="fa fa-shopping-cart" aria-hidden="true"> </i> <span> </span> Part Request</a>
+                            <a href="{{ route('part_check') }}" class="button info shadowed small"><i
+                                    class="fa fa-cubes" aria-hidden="true"> </i> <span> </span> Stock</a>
                         </td>
                     </tr>
                 </table>

@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
+use App\Mail\NotifyService;
+use Illuminate\Support\Facades\Mail;
+
 class TablePartout extends Component
 {
-
     public $input_code;
     public $items = [];
     public $i = 1;
@@ -69,6 +71,15 @@ class TablePartout extends Component
             $qty = DB::table('stock')->where('item_code', $mv->item_code)->select('qty')->value('qty');
             DB::table('stock')->where('item_code', $mv->item_code)->update([
                 'qty' => $qty - $mv->qty]);
+            if (DB::table('stock')->where('item_code', $mv->item_code)->value('qty') <= DB::table('stock')->where('item_code', $mv->item_code)->value('minimum')) {
+                DB::table('temp_data')->insert([
+                    'refer' => $mv->item_code,
+                    'value' => date('Ymd'),
+                    'type'  => 'EMPSTCK',
+                ]);
+            } else {
+                // Do Nothing
+            }
         } 
         DB::table('temp_partout')->truncate();
         return redirect('/partout');

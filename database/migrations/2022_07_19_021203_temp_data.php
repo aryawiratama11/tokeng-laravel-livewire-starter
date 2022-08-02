@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Approver extends Migration
+class TempData extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Approver extends Migration
      */
     public function up()
     {
-        Schema::create('approver', function (Blueprint $table) {
+        Schema::create('temp_data', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('approval01')->nullable();
-            $table->string('approval02')->nullable();
+            $table->string('refer');
+            $table->integer('value')->default(0);
+            $table->string('type');
+            $table->timestamp('time_log', $precision = 0)->useCurrent();
         });
     }
 
@@ -28,6 +29,6 @@ class Approver extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approver');
+        Schema::dropIfExists('temp_data');
     }
 }

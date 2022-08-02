@@ -17,12 +17,12 @@ class NotifyService extends Mailable
      *
      * @return void
      */
-    protected $itemcode;
+    protected $value;
 
     public function __construct($a1)
     {
         
-        $this->itemcode = $a1;
+        $this->value = $a1;
     }
 
     /**
@@ -32,21 +32,16 @@ class NotifyService extends Mailable
      */    
     public function build()
     {
-        $item_name = DB::table('stock')->where('item_code', $this->itemcode)->limit(1)->value('item_name');
-        $minimum   = DB::table('stock')->where('item_code', $this->itemcode)->limit(1)->value('minimum');
-        $uom       = DB::table('stock')->where('item_code', $this->itemcode)->limit(1)->value('uom');
-        $location  = DB::table('stock')->where('item_code', $this->itemcode)->limit(1)->value('location');
-        $easter    = DB::table('easter')->where('id', rand(1,450))->value('text');
+        $table  = DB::table('temp_data')->join('stock', 'temp_data.refer', '=', 'stock.item_code')
+                  ->where('temp_data.value', $this->value)->where('type', 'EMPSTCK')
+                  ->select('stock.item_code as item_code', 'stock.item_name as item_name', 'stock.qty as qty', 'stock.uom as uom', 'stock.location as location')->get();
+        $easter = DB::table('easter')->where('id', rand(1,450))->value('text');
         return $this->from('notify.no_reply@mli.panasonic.co.id')
                     ->subject('Reminder Zero Stock Item')
                     ->view('mail.internal')
                     ->with([
-                        'item_code' => $item_code,
-                        'item_name' => $item_name,
-                        'minimum'   => $minimum,
-                        'uom'       => $uom,
-                        'location'  => $location,
-                        'easter'    => $easter,
+                        'data'   => $table,
+                        'easter' => $easter,
                     ]);
     }
 }

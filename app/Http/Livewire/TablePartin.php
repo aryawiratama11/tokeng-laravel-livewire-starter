@@ -9,6 +9,7 @@ class TablePartin extends Component
 {
 
     public $input_code;
+    public $item_name;
     public $items = [];
     public $i = 1;
 
