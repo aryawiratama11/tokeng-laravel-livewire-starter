@@ -40,7 +40,7 @@ class dailynotify extends Command
      */
     public function handle()
     {
-    $c  = DB::table('mail_list')->where('type', 'cc')->pluck('email');
+    $cc = DB::table('mail_list')->where('type', 'cc')->pluck('email');
     $to = DB::table('mail_list')->where('type', 'to')->pluck('email');
     if (DB::table('temp_data')->where('value', date('Y-m-d', strtotime('-1 days')))->count() > 0) {
         Mail::to($crt)->cc($cc)->queue(new NotifyService(date('Y-m-d', strtotime('-1 days'))));
