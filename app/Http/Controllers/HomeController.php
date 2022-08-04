@@ -125,7 +125,8 @@ class HomeController extends Controller
             'qty' => $request->qty,
             'uom' => $request->uom,
             'minimum' => $request->minim,
-            'location' => $request->location
+            'location' => $request->location,
+            'remark' => $request->remark
         ]);
     }
 

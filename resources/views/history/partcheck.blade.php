@@ -51,6 +51,10 @@
         <div class="cell-4">Location</div>
         <div class="cell-8"><input id="location" type="text" data-role="input"></div>
         </div>
+        <div class="row">
+        <div class="cell-4">Remark</div>
+        <div class="cell-8"><input id="remark" type="text" data-role="input"></div>
+        </div>
     </div>
     <div class="dialog-actions">
         <button class="button" onclick="update()">Process</button>
@@ -88,6 +92,7 @@ axios.get('/stock/data/' + id)
     document.getElementById("item_uom").value = response.data[0].uom;
     document.getElementById("minimum_stock").value = response.data[0].minimum;
     document.getElementById("location").value = response.data[0].location;
+    document.getElementById("remark").value = response.data[0].remark;
   });
   Metro.dialog.open('#demoDialog1')
 }
@@ -100,6 +105,7 @@ axios.post('/stock/update', {
     uom       : document.getElementById("item_uom").value,
     minim     : document.getElementById("minimum_stock").value,
     location  : document.getElementById("location").value,
+    remark    : document.getElementById("remark").value,
 }).then(function (response) {
     Metro.dialog.close('#demoDialog1')
     var options = {

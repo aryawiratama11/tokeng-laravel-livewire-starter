@@ -43,9 +43,10 @@
                                         <th class="sortable-column">Item Code</th>
                                         <th class="sortable-column">Item Name</th>
                                         <th class="sortable-column">Qty</th>
-                                        <th class="sortable-column">Minimum Stock</th>
+                                        <th class="sortable-column">Min</th>
                                         <th class="sortable-column">UOM</th>
                                         <th class="sortable-column">Location</th>
+                                        <th class="sortable-column">Remark</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,6 +60,7 @@
                                             <td>{{$dt->minimum}}</td>
                                             <td>{{$dt->uom}}</td>
                                             <td>{{$dt->location}}</td>
+                                            <td>{{$dt->remark}}</td>
                                         </tr>
                                         @endif
                                         @endforeach

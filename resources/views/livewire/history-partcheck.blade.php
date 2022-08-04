@@ -22,9 +22,10 @@
                         <th>Item Code</th>
                         <th>Item Name</th>
                         <th>Qty</th>
-                        <th>Minimum Stock</th>
+                        <th>Min</th>
                         <th>UOM</th>
                         <th>Location</th>
+                        <th>Remark</th>
                         <th style="width:100px">Option</th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@
                         <td>{{$dt->minimum}}</td>
                         <td>{{$dt->uom}}</td>
                         <td>{{$dt->location}}</td>
+                        <td>{{$dt->remark}}</td>
                         <td>
                             <button class="button primary small"
                                     onclick="showmodal('{{$dt->item_code}}')"><i class="fa fa-pencil"

@@ -34,11 +34,12 @@ class NotifyService extends Mailable
     {
         $table  = DB::table('temp_data')->join('stock', 'temp_data.refer', '=', 'stock.item_code')
                   ->where('temp_data.value', $this->value)->where('type', 'EMPSTCK')
-                  ->select('stock.item_code as item_code', 'stock.item_name as item_name', 'stock.qty as qty', 'stock.uom as uom', 'stock.location as location')->get();
+                  ->select('stock.item_code as item_code', 'stock.item_name as item_name', 'stock.qty as qty', 
+                  'stock.uom as uom', 'stock.minimum as minimum', 'stock.location as location', 'stock.remark as remark')->get();
         $easter = DB::table('easter')->where('id', rand(1,450))->value('text');
         return $this->from('notify.no_reply@mli.panasonic.co.id')
                     ->subject('Reminder Zero Stock Item')
-                    ->view('mail.internal')
+                    ->view('mail_internal')
                     ->with([
                         'data'   => $table,
                         'easter' => $easter,

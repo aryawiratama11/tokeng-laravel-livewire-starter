@@ -41,11 +41,12 @@ class dailynotify extends Command
     public function handle()
     {
     $cc = DB::table('mail_list')->where('type', 'cc')->pluck('email');
-    $to = DB::table('mail_list')->where('type', 'to')->pluck('email');
-    if (DB::table('temp_data')->where('value', date('Y-m-d', strtotime('-1 days')))->count() > 0) {
-        Mail::to($crt)->cc($cc)->queue(new NotifyService(date('Y-m-d', strtotime('-1 days'))));
+    $to = DB::table('mail_list')->where('type', 'To')->pluck('email');
+    if (DB::table('temp_data')->where('value', date('Ymd', strtotime('-1 days')))->count() > 0) {
+        Mail::to($to)->cc($cc)->send(new NotifyService(date('Ymd', strtotime('-1 days'))));
+        $this->info('Successfull job.');
     } else {
-        // Do Nothing
+        $this->info('No job.');
     }
     }
 }
